@@ -16,18 +16,40 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-string conStr = @"Data Source=SKAB3-PC8;Database=ICE_API_Database;User ID = sa; Password = Passw0rd;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
+string conStr = @"Data Source=desktop-45208ai;Database=ICE_API_Database;User ID = sa; Password = Passw0rd;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
 //Data Source = SKAB3 - PC8; Initial Catalog = ICE_API_Database; User ID = sa; Password = ***********; Trust Server Certificate=True
 builder.Services.AddDbContext<DataContext>(obj => obj.UseSqlServer(conStr));
 
 // DI
-builder.Services.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddScoped<IRecipeRepo, RecipeRepo>();
+builder.Services.AddScoped<ICategoryRepo, CategoryRepo>();
+builder.Services.AddScoped<ICommentRepo, CommentRepo>();
+builder.Services.AddScoped<ICountryRepo, CountryRepo>();
+builder.Services.AddScoped<IDietaryPreferenceRepo, DietaryPreferenceRepo>();
 builder.Services.AddScoped<IIngredientRepo, IngredientRepository>();
 builder.Services.AddScoped<IKitchenRepo, KitchenRepo>();
-builder.Services.AddScoped<ICategoryRepo, CategoryRepo>();
+builder.Services.AddScoped<ILanguageRepo, LanguageRepo>();
+builder.Services.AddScoped<IRecipeRepo, RecipeRepo>();
+builder.Services.AddScoped<IRecipeTagRepo, RecipeTagRepo>();
+builder.Services.AddScoped<IRegionRepo, RegionRepo>();
 builder.Services.AddScoped<IReviewRepo, ReviewRepo>();
 builder.Services.AddScoped<IUserFavoriteRepo, UserFavoriteRepo>();
+builder.Services.AddScoped<IUserHistoryRepo, UserHistoryRepo>();
+builder.Services.AddScoped<IUserPreferenceRepo, UserPreferenceRepo>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+
+///Cross Thread problems
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("coffee",
+                          policy =>
+                          {
+                              policy.AllowAnyOrigin()
+                                    .AllowAnyHeader()
+                                    .AllowAnyMethod();
+                          });
+});
+
+
 
 //Cross Thread problems
 builder.Services.AddCors(options =>

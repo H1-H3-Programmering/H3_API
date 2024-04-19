@@ -39,6 +39,7 @@ namespace ICE_Repository.Repositories
                 column.Name = updatedColumn.Name;
                 column.Continent = updatedColumn.Continent;
                 column.Region = updatedColumn.Region;
+                column.CountryId = updatedColumn.CountryId;
 
                 context.SaveChanges();
             }

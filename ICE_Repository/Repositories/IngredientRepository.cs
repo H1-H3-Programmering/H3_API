@@ -37,7 +37,7 @@ namespace ICE_Repository.Repositories
             if (ingredient != null)
             {
                 ingredient.Name = updatedIngredient.Name;
-                ingredient.Category = updatedIngredient.Category;
+                ingredient.CategoryId = updatedIngredient.CategoryId;
 
                 context.SaveChanges();
             }

@@ -37,7 +37,6 @@ namespace ICE_Repository.Repositories
             if (column != null)
             {
                 column.Name = updatedColumn.Name;
-                column.IngredientsId = updatedColumn.IngredientsId;
 
                 context.SaveChanges();
             }

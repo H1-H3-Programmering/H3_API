@@ -11,7 +11,7 @@ namespace ICE_Repository.Models
     {
         [Key]
         public int IngredientsId { get; set; }
-        public string Name { get; set; }
-        public string Category { get; set; }
+        public string? Name { get; set; }
+        public int CategoryId { get; set; }
     }
 }

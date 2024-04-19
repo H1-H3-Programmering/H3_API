@@ -42,6 +42,8 @@ namespace ICE_Repository.Repositories
                 recipe.Instructions = updatedRecipe.Instructions;
                 recipe.Difficulty = updatedRecipe.Difficulty;
                 recipe.PreperationTime = updatedRecipe.PreperationTime;
+                recipe.RecipeTag = updatedRecipe.RecipeTag;
+                recipe.CommentId = updatedRecipe.CommentId;
 
                 context.SaveChanges();
             }

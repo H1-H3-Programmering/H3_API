@@ -1,21 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using System.Text.Json.Serialization;
 
 namespace ICE_Repository.Models
 {
-    public class Kitchen
+    public class Language
     {
         [Key]
-        public int KitchenId { get; set; }
-        public string? Name { get; set; }
-        public string? Continent { get; set; }
-        public string? Region { get; set; }
+        public int LanguageId { get; set; }
+        public string? LanguageName { get; set; }
+        //Foreign Key
         public int CountryId { get; set; }
+        //Navigation Property
         [JsonIgnore] public Country? Country { get; set; }
     }
 }
