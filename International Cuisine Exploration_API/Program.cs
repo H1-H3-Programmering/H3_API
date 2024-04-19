@@ -37,20 +37,6 @@ builder.Services.AddScoped<IUserHistoryRepo, UserHistoryRepo>();
 builder.Services.AddScoped<IUserPreferenceRepo, UserPreferenceRepo>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 
-///Cross Thread problems
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("coffee",
-                          policy =>
-                          {
-                              policy.AllowAnyOrigin()
-                                    .AllowAnyHeader()
-                                    .AllowAnyMethod();
-                          });
-});
-
-
-
 //Cross Thread problems
 builder.Services.AddCors(options =>
 {
@@ -62,8 +48,6 @@ builder.Services.AddCors(options =>
                                     .AllowAnyMethod();
                           });
 });
-
-
 
 var app = builder.Build();
 
