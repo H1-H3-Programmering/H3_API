@@ -16,7 +16,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-string conStr = @"Data Source=SKAB3-PC8;Database=ICE_API_Database;User ID = sa; Password = Passw0rd;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
+string conStr = @"Data Source=desktop-45208ai;Database=ICE_API_Database;User ID = sa; Password = Passw0rd;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
 //Data Source = SKAB3 - PC8; Initial Catalog = ICE_API_Database; User ID = sa; Password = ***********; Trust Server Certificate=True
 builder.Services.AddDbContext<DataContext>(obj => obj.UseSqlServer(conStr));
 
@@ -37,6 +37,20 @@ builder.Services.AddScoped<IUserHistoryRepo, UserHistoryRepo>();
 builder.Services.AddScoped<IUserPreferenceRepo, UserPreferenceRepo>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 
+///Cross Thread problems
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("coffee",
+                          policy =>
+                          {
+                              policy.AllowAnyOrigin()
+                                    .AllowAnyHeader()
+                                    .AllowAnyMethod();
+                          });
+});
+
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -45,6 +59,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors("coffee");
 
 app.UseHttpsRedirection();
 
