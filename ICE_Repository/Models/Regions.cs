@@ -19,6 +19,6 @@ namespace ICE_Repository.Models
         //Foreign Key
         public int CountryId { get; set; }
         //Navigation Property
-        [JsonIgnore] public Country? Country { get; set; }
+        [JsonIgnore] public Country Country { get; set; } = new Country();
     }
 }

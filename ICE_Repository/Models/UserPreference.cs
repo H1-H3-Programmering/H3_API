@@ -12,6 +12,6 @@ namespace ICE_Repository.Models
         public string? PreferenceType { get; set; }
 
         public string? PreferenceDescription { get; set; }
-        [JsonIgnore]public List<DietaryPreference>? DietaryPreferenceId { get; set; }
+        [JsonIgnore]public List<DietaryPreference> DietaryPreferenceId { get; set; } = new List<DietaryPreference>();
     }
 }

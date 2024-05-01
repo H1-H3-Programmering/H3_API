@@ -14,9 +14,9 @@ namespace ICE_Repository.Models
         public int IngredientsId { get; set; }
         public string? Name { get; set; }
         public int CategoryId { get; set; }
-       [JsonIgnore]public Category category { get; set; }
+       [JsonIgnore]public Category category { get; set; } = new Category();
         public int RecipeId { get; set; }
-        [JsonIgnore]public Recipe recipes { get; set; }
+        [JsonIgnore] public Recipe recipes { get; set; } = new Recipe();
     }
 
     public class IngredientCategoryJOIN
@@ -24,9 +24,9 @@ namespace ICE_Repository.Models
         [Key] public int UserFavoriteRecipeJOINId { get; set; }
 
         public int UserFavoriteId { get; set; }
-        [JsonIgnore] public UserFavorite? UserFavorite { get; set; }
+        [JsonIgnore] public UserFavorite UserFavorite { get; set; } = new UserFavorite();
 
         public int RecipeId { get; set; }
-        [JsonIgnore] public Recipe? Recipe { get; set; }
+        [JsonIgnore] public Recipe Recipe { get; set; } = new Recipe();
     }
 }

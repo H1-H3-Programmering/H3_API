@@ -37,23 +37,21 @@ namespace ICE_Repository.Context
         public DbSet<UserPreference> UserPreferences { get; set; }
         public DbSet<RecipeTag> RecipeTags { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
 
 
-            Category category = new Category()
-            {
-                CategoryId = 1,
-                Name= "Protein"
-            };
+        //    Category category = new Category()
+        //    {
+        //        CategoryId = 1,
+        //        Name= "Protein"
+        //    };
 
-            modelBuilder.Entity<Category>().HasData(category);
+        //    modelBuilder.Entity<Category>().HasData(category);
 
-            //Remember Conjoined classes to be included here.
-            
+        //    //Remember Conjoined classes to be included here.
 
-        //base.OnModelCreating(modelBuilder);
-    }
 
+        ////base.OnModelCreating(modelBuilder);
     }
 }

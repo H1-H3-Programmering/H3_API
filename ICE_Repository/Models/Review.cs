@@ -14,8 +14,8 @@ namespace ICE_Repository.Models
         public int Rating { get; set; }
         public string? Comment { get; set; }
         public int UserId { get; set; }
-        [JsonIgnore] public Users? User { get; set; }
+        [JsonIgnore] public Users User { get; set; } = new Users();
         public int RecipeId { get; set; }
-        [JsonIgnore] public Recipe? Recipe { get; set; }
+        [JsonIgnore] public Recipe Recipe { get; set; } = new Recipe();
     }
 }

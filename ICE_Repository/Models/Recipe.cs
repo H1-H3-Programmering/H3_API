@@ -16,10 +16,23 @@ namespace ICE_Repository.Models
         public string? Instructions { get; set; }
         public int Difficulty { get; set; }
         public int PreperationTime { get; set; }
-        [JsonIgnore]public List<UserFavoriteRecipeJOIN>? UserFavorites { get; set; }
-        [JsonIgnore]public List<RecipeTag>? RecipeTag { get; set; }
-        [JsonIgnore]public List<Comments>? CommentId { get; set; }
+        [JsonIgnore] public List<UserFavoriteRecipeJOIN> UserFavorites { get; set; } = new List<UserFavoriteRecipeJOIN>();
+        [JsonIgnore] public List<RecipeTag> RecipeTag { get; set; } = new List<RecipeTag>();
+        [JsonIgnore] public List<Comments> CommentId { get; set; } = new List<Comments>();
+        [JsonIgnore] List<CategoryRecipeJOIN> categoryRecipejoins { get; set; } = new List<CategoryRecipeJOIN> { };
+        [JsonIgnore] List<RecipeIngredientJOIN> recipeIngredientJOIN { get; set; } = new List<RecipeIngredientJOIN> { };
+    }
+
+
+    public class RecipeIngredientJOIN
+    {
+        public int RecipeIngredientJOINId { get; set; }
+
+        public int RecipeId { get; set; }
+        public Recipe recipes { get; set; } = new Recipe();
+
         public int IngredientsId { get; set; }
-        [JsonIgnore]public Ingredient ingredients { get; set; }
+        public Ingredient Ingredients { get; set; } = new Ingredient();
+
     }
 }

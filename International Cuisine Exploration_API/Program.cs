@@ -16,7 +16,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-string conStr = @"Data Source=SKAB3-PC8;Database=ICE_API_Database;User ID = sa; Password = Passw0rd;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
+string conStr = @"Data Source=DESKTOP-45208AI;Database=ICE_API_Database;User ID = sa; Password = Passw0rd;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
 //Data Source = SKAB3 - PC8; Initial Catalog = ICE_API_Database; User ID = sa; Password = ***********; Trust Server Certificate=True
 builder.Services.AddDbContext<DataContext>(obj => obj.UseSqlServer(conStr));
 

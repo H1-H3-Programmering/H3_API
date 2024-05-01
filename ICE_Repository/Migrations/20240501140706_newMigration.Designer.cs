@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ICE_Repository.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240501095404_newMigration")]
+    [Migration("20240501140706_newMigration")]
     partial class newMigration
     {
         /// <inheritdoc />
@@ -117,9 +117,14 @@ namespace ICE_Repository.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("RecipeId")
+                        .HasColumnType("int");
+
                     b.HasKey("IngredientsId");
 
                     b.HasIndex("CategoryId");
+
+                    b.HasIndex("RecipeId");
 
                     b.ToTable("Ingredients");
                 });
@@ -191,12 +196,6 @@ namespace ICE_Repository.Migrations
                     b.Property<int>("Difficulty")
                         .HasColumnType("int");
 
-                    b.Property<int>("IngredientsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IngredientsId1")
-                        .HasColumnType("int");
-
                     b.Property<string>("Instructions")
                         .HasColumnType("nvarchar(max)");
 
@@ -210,8 +209,6 @@ namespace ICE_Repository.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("RecipeId");
-
-                    b.HasIndex("IngredientsId1");
 
                     b.ToTable("Recipes");
                 });
@@ -453,7 +450,15 @@ namespace ICE_Repository.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("ICE_Repository.Models.Recipe", "recipes")
+                        .WithMany()
+                        .HasForeignKey("RecipeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("category");
+
+                    b.Navigation("recipes");
                 });
 
             modelBuilder.Entity("ICE_Repository.Models.Kitchen", b =>
@@ -484,17 +489,6 @@ namespace ICE_Repository.Migrations
                         .IsRequired();
 
                     b.Navigation("Country");
-                });
-
-            modelBuilder.Entity("ICE_Repository.Models.Recipe", b =>
-                {
-                    b.HasOne("ICE_Repository.Models.Ingredient", "ingredient")
-                        .WithMany()
-                        .HasForeignKey("IngredientsId1")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ingredient");
                 });
 
             modelBuilder.Entity("ICE_Repository.Models.RecipeTag", b =>
