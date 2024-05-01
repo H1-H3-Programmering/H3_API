@@ -1,4 +1,5 @@
 ﻿using ICE_Repository.Models;
+using Microsoft.AspNetCore.Razor.Language.Intermediate;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -35,8 +36,22 @@ namespace ICE_Repository.Context
         public DbSet<DietaryPreference> DietaryPreferences { get; set; }
         public DbSet<UserPreference> UserPreferences { get; set; }
         public DbSet<RecipeTag> RecipeTags { get; set; }
-        //public DbSet<UserDietaryPreferenceJOIN> UserDietaryPreferenceJOIN { get; set; }
-        //public DbSet<UserFavoriteRecipeJOIN> UserFavoriteRecipeJOIN { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+
+
+            Category category = new Category()
+            {
+                CategoryId = 1,
+                Name= "Protein"
+            };
+
+            modelBuilder.Entity<Category>().HasData(category);
+            
+
+        //base.OnModelCreating(modelBuilder);
+    }
 
     }
 }

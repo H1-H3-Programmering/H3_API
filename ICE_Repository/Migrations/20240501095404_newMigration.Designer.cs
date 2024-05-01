@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ICE_Repository.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240416094643_test12")]
-    partial class test12
+    [Migration("20240501095404_newMigration")]
+    partial class newMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -52,7 +52,6 @@ namespace ICE_Repository.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Text")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UserId")
@@ -76,11 +75,9 @@ namespace ICE_Repository.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CountryId"));
 
                     b.Property<string>("Continent")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CountryName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CountryId");
@@ -118,10 +115,11 @@ namespace ICE_Repository.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("IngredientsId");
+
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Ingredients");
                 });
@@ -135,23 +133,25 @@ namespace ICE_Repository.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("KitchenId"));
 
                     b.Property<string>("Continent")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("CountryId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("RecipeId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Region")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("KitchenId");
 
                     b.HasIndex("CountryId");
+
+                    b.HasIndex("RecipeId");
 
                     b.ToTable("Kitchens");
                 });
@@ -168,7 +168,6 @@ namespace ICE_Repository.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("LanguageName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("LanguageId");
@@ -187,28 +186,32 @@ namespace ICE_Repository.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RecipeId"));
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Difficulty")
                         .HasColumnType("int");
 
+                    b.Property<int>("IngredientsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IngredientsId1")
+                        .HasColumnType("int");
+
                     b.Property<string>("Instructions")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Origin")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PreperationTime")
                         .HasColumnType("int");
 
                     b.HasKey("RecipeId");
+
+                    b.HasIndex("IngredientsId1");
 
                     b.ToTable("Recipes");
                 });
@@ -225,7 +228,6 @@ namespace ICE_Repository.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Tag")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("RecipeTagId");
@@ -247,7 +249,6 @@ namespace ICE_Repository.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("RegionName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("RegionId");
@@ -266,7 +267,6 @@ namespace ICE_Repository.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ReviewId"));
 
                     b.Property<string>("Comment")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Rating")
@@ -383,11 +383,9 @@ namespace ICE_Repository.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PreferenceId"));
 
                     b.Property<string>("PreferenceDescription")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PreferenceType")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("PreferenceId");
@@ -404,15 +402,12 @@ namespace ICE_Repository.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Username")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("UserId");
@@ -450,6 +445,17 @@ namespace ICE_Repository.Migrations
                     b.Navigation("Preference");
                 });
 
+            modelBuilder.Entity("ICE_Repository.Models.Ingredient", b =>
+                {
+                    b.HasOne("ICE_Repository.Models.Category", "category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("category");
+                });
+
             modelBuilder.Entity("ICE_Repository.Models.Kitchen", b =>
                 {
                     b.HasOne("ICE_Repository.Models.Country", "Country")
@@ -458,7 +464,15 @@ namespace ICE_Repository.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("ICE_Repository.Models.Recipe", "recipe")
+                        .WithMany()
+                        .HasForeignKey("RecipeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Country");
+
+                    b.Navigation("recipe");
                 });
 
             modelBuilder.Entity("ICE_Repository.Models.Language", b =>
@@ -470,6 +484,17 @@ namespace ICE_Repository.Migrations
                         .IsRequired();
 
                     b.Navigation("Country");
+                });
+
+            modelBuilder.Entity("ICE_Repository.Models.Recipe", b =>
+                {
+                    b.HasOne("ICE_Repository.Models.Ingredient", "ingredient")
+                        .WithMany()
+                        .HasForeignKey("IngredientsId1")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ingredient");
                 });
 
             modelBuilder.Entity("ICE_Repository.Models.RecipeTag", b =>

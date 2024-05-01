@@ -19,5 +19,7 @@ namespace ICE_Repository.Models
         [JsonIgnore]public List<UserFavoriteRecipeJOIN>? UserFavorites { get; set; }
         [JsonIgnore]public List<RecipeTag>? RecipeTag { get; set; }
         [JsonIgnore]public List<Comments>? CommentId { get; set; }
+        public int IngredientsId { get; set; }
+        [JsonIgnore]public Ingredient ingredients { get; set; }
     }
 }

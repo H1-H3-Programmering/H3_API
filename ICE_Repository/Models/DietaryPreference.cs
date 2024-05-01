@@ -16,7 +16,7 @@ namespace ICE_Repository.Models
 
 
         public int PreferenceId { get; set; }
-        [JsonIgnore] public UserPreference? Preference { get; set; }
+        public UserPreference? Preference { get; set; }
     }
 
     public class UserDietaryPreferenceJOIN
