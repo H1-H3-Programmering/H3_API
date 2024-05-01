@@ -38,6 +38,7 @@ namespace ICE_Repository.Repositories
             {
                 ingredient.Name = updatedIngredient.Name;
                 ingredient.CategoryId = updatedIngredient.CategoryId;
+                ingredient.RecipeId = updatedIngredient.RecipeId;
 
                 context.SaveChanges();
             }

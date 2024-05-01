@@ -39,19 +39,22 @@ namespace ICE_Repository.Context
 
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
         //{
+        //    Category category1 = new Category(){CategoryId = 1,Name = "Protein"};
+        //    Category category2 = new Category(){CategoryId = 2,Name = "Kulhydrat"};
+        //    modelBuilder.Entity<Category>().HasData(category1);
+        //    modelBuilder.Entity<Category>().HasData(category2);
 
+        //    Comments comments1 = new Comments() {CommentId = 1,UserId=1,RecipeId=1,Text="Hello"};
+        //    Comments comments2 = new Comments() {CommentId = 2,UserId=2,RecipeId=2,Text="Hello"};
+        //    modelBuilder.Entity<Comments>().HasData(comments1);
+        //    modelBuilder.Entity<Comments>().HasData(comments2);
 
-        //    Category category = new Category()
-        //    {
-        //        CategoryId = 1,
-        //        Name= "Protein"
-        //    };
+        //    Country country1 = new Country() {CountryId=1,CountryName="Denmark",Continent="Europe" };
 
-        //    modelBuilder.Entity<Category>().HasData(category);
 
         //    //Remember Conjoined classes to be included here.
+        //}
 
-
-        ////base.OnModelCreating(modelBuilder);
+            ////base.OnModelCreating(modelBuilder);
     }
-}
+    }

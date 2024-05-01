@@ -40,6 +40,7 @@ namespace ICE_Repository.Repositories
                 column.Continent = updatedColumn.Continent;
                 column.Region = updatedColumn.Region;
                 column.CountryId = updatedColumn.CountryId;
+                column.RecipeId = updatedColumn.RecipeId;
 
                 context.SaveChanges();
             }
