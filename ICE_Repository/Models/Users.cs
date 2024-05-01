@@ -18,7 +18,7 @@ namespace ICE_Repository.Models
         public string? Email { get; set; }
         public string? Password { get; set; }
         [JsonIgnore] public List<Comments>? CommentId { get; set; }
-        [JsonIgnore] public List<UserDietaryPreferenceJOIN>? DietaryPreference { get; set; }
+        [JsonIgnore] public List<UserDietaryPreferenceJOIN> DietaryPreference { get; set; } = new List<UserDietaryPreferenceJOIN>(); 
         [JsonIgnore] public List<Review>? ReviewId { get; set; }
     }
 }

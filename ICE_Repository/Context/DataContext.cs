@@ -48,6 +48,8 @@ namespace ICE_Repository.Context
             };
 
             modelBuilder.Entity<Category>().HasData(category);
+
+            //Remember Conjoined classes to be included here.
             
 
         //base.OnModelCreating(modelBuilder);
