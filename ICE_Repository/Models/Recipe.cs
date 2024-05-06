@@ -16,11 +16,11 @@ namespace ICE_Repository.Models
         public string? Instructions { get; set; }
         public int Difficulty { get; set; }
         public int PreperationTime { get; set; }
-        [JsonIgnore] public List<UserFavoriteRecipeJOIN> UserFavorites { get; set; } = new List<UserFavoriteRecipeJOIN>();
+        [JsonIgnore] public List<UserFavoriteRecipeJOIN> UserFavoriteRecipeJOINs { get; set; } = new List<UserFavoriteRecipeJOIN>();
         [JsonIgnore] public List<RecipeTag> RecipeTag { get; set; } = new List<RecipeTag>();
         [JsonIgnore] public List<Comments> CommentId { get; set; } = new List<Comments>();
-        [JsonIgnore] List<CategoryRecipeJOIN> categoryRecipejoins { get; set; } = new List<CategoryRecipeJOIN> { };
-        [JsonIgnore] List<RecipeIngredientJOIN> recipeIngredientJOIN { get; set; } = new List<RecipeIngredientJOIN> { };
+        [JsonIgnore] public List<CategoryRecipeJOIN> CategoryRecipeJOINs { get; set; } = new List<CategoryRecipeJOIN> { };
+        [JsonIgnore] public List<RecipeIngredientJOIN> RecipeIngredientJOINs { get; set; } = new List<RecipeIngredientJOIN> { };
     }
 
 

@@ -14,9 +14,10 @@ namespace ICE_Repository.Models
         public int IngredientsId { get; set; }
         public string? Name { get; set; }
         public int CategoryId { get; set; }
-       [JsonIgnore]public Category category { get; set; } = new Category();
+        [JsonIgnore]public Category category { get; set; } = new Category();
         public int RecipeId { get; set; }
         [JsonIgnore] public Recipe recipes { get; set; } = new Recipe();
+        [JsonIgnore] public List<RecipeIngredientJOIN> RecipeIngredientJOINs { get; set; } = new List<RecipeIngredientJOIN> { };
     }
 
     public class IngredientCategoryJOIN

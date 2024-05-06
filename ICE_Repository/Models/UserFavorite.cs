@@ -11,7 +11,7 @@ namespace ICE_Repository.Models
     public class UserFavorite
     {
         public int UserFavoriteId { get; set; }
-        [JsonIgnore] public List<UserFavoriteRecipeJOIN> RecipeId { get; set; } = new List<UserFavoriteRecipeJOIN>();
+        [JsonIgnore] public List<UserFavoriteRecipeJOIN> UserFavoriteRecipeJOINs { get; set; } = new List<UserFavoriteRecipeJOIN>();
         public int UserId { get; set; }
         [JsonIgnore] public Users User { get; set; } = new Users();
     }

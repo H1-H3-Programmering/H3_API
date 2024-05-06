@@ -12,7 +12,7 @@ namespace ICE_Repository.Models
     public class DietaryPreference
     {
         [Key]public int DietaryPreferenceId { get; set; }
-        [JsonIgnore] public List<UserDietaryPreferenceJOIN> UserId { get; set; } = new List<UserDietaryPreferenceJOIN>();
+        [JsonIgnore] public List<UserDietaryPreferenceJOIN> UserDietaryPreferenceJOINs { get; set; } = new List<UserDietaryPreferenceJOIN>();
 
 
         public int PreferenceId { get; set; }
