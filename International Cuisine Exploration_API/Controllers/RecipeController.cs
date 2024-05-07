@@ -28,6 +28,12 @@ namespace International_Cuisine_Exploration_API.Controllers
             return repo.GetAll();
         }
 
+        [HttpGet]
+        List<Ingredient> GetIngredientsForRecipe(int recipeId)
+        {
+            return repo.GetIngredientsForRecipe(recipeId);
+        }
+
         // Create: api/<SamuraiController>
         [HttpPost]
         public void Create(Recipe recipe)

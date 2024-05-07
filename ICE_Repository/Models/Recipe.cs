@@ -20,19 +20,20 @@ namespace ICE_Repository.Models
         [JsonIgnore] public List<RecipeTag> RecipeTag { get; set; } = new List<RecipeTag>();
         [JsonIgnore] public List<Comments> CommentId { get; set; } = new List<Comments>();
         [JsonIgnore] public List<CategoryRecipeJOIN> CategoryRecipeJOINs { get; set; } = new List<CategoryRecipeJOIN> { };
-        [JsonIgnore] public List<RecipeIngredientJOIN> RecipeIngredientJOINs { get; set; } = new List<RecipeIngredientJOIN> { };
+        //[JsonIgnore] public List<RecipeIngredientJOIN> RecipeIngredientJOINs { get; set; } = new List<RecipeIngredientJOIN> { };
+        [JsonIgnore] public List<Ingredient> ingredients { get; set; } = new List<Ingredient> { };
     }
 
 
-    public class RecipeIngredientJOIN
-    {
-        public int RecipeIngredientJOINId { get; set; }
+    //public class RecipeIngredientJOIN
+    //{
+    //    public int RecipeIngredientJOINId { get; set; }
 
-        public int RecipeId { get; set; }
-        public Recipe recipes { get; set; } = new Recipe();
+    //    public int RecipeId { get; set; }
+    //    public Recipe recipes { get; set; }
 
-        public int IngredientsId { get; set; }
-        public Ingredient Ingredients { get; set; } = new Ingredient();
+    //    public int IngredientsId { get; set; }
+    //    public Ingredient Ingredients { get; set; }
 
-    }
+    //}
 }
