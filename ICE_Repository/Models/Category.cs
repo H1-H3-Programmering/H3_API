@@ -13,17 +13,6 @@ namespace ICE_Repository.Models
     {
         [Key] public int CategoryId { get; set; }
         public string? Name { get; set; }
-        [JsonIgnore]public List<CategoryRecipeJOIN> CategoryRecipeJOINs { get; set; } = new List<CategoryRecipeJOIN>();
-    }
-
-    public class CategoryRecipeJOIN
-    {
-        [Key] public int CategoryRecipeJOINId { get; set; }
-
-        public int CategoryId { get; set; }
-        [JsonIgnore] public Category category { get; set; } = new Category();
-
-        public int RecipeId { get; set; }
-        [JsonIgnore] public Recipe Recipe { get; set; } = new Recipe();
+        public List<Ingredient> ingredients { get; set; } = new List<Ingredient> { };
     }
 }

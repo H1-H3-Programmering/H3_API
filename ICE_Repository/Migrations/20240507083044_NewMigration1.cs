@@ -5,7 +5,7 @@
 namespace ICE_Repository.Migrations
 {
     /// <inheritdoc />
-    public partial class NewMigration2 : Migration
+    public partial class NewMigration1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -121,32 +121,6 @@ namespace ICE_Repository.Migrations
                         column: x => x.CountryId,
                         principalTable: "Countries",
                         principalColumn: "CountryId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "CategoryRecipeJOIN",
-                columns: table => new
-                {
-                    CategoryRecipeJOINId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CategoryId = table.Column<int>(type: "int", nullable: false),
-                    RecipeId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CategoryRecipeJOIN", x => x.CategoryRecipeJOINId);
-                    table.ForeignKey(
-                        name: "FK_CategoryRecipeJOIN_Categories_CategoryId",
-                        column: x => x.CategoryId,
-                        principalTable: "Categories",
-                        principalColumn: "CategoryId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_CategoryRecipeJOIN_Recipes_RecipeId",
-                        column: x => x.RecipeId,
-                        principalTable: "Recipes",
-                        principalColumn: "RecipeId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -398,16 +372,6 @@ namespace ICE_Repository.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_CategoryRecipeJOIN_CategoryId",
-                table: "CategoryRecipeJOIN",
-                column: "CategoryId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_CategoryRecipeJOIN_RecipeId",
-                table: "CategoryRecipeJOIN",
-                column: "RecipeId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Comments_RecipeId",
                 table: "Comments",
                 column: "RecipeId");
@@ -506,9 +470,6 @@ namespace ICE_Repository.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "CategoryRecipeJOIN");
-
             migrationBuilder.DropTable(
                 name: "Comments");
 

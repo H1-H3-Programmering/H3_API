@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ICE_Repository.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240507075430_NewMigration2")]
-    partial class NewMigration2
+    [Migration("20240507083044_NewMigration1")]
+    partial class NewMigration1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,29 +38,6 @@ namespace ICE_Repository.Migrations
                     b.HasKey("CategoryId");
 
                     b.ToTable("Categories");
-                });
-
-            modelBuilder.Entity("ICE_Repository.Models.CategoryRecipeJOIN", b =>
-                {
-                    b.Property<int>("CategoryRecipeJOINId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryRecipeJOINId"));
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RecipeId")
-                        .HasColumnType("int");
-
-                    b.HasKey("CategoryRecipeJOINId");
-
-                    b.HasIndex("CategoryId");
-
-                    b.HasIndex("RecipeId");
-
-                    b.ToTable("CategoryRecipeJOIN");
                 });
 
             modelBuilder.Entity("ICE_Repository.Models.Comments", b =>
@@ -435,25 +412,6 @@ namespace ICE_Repository.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("ICE_Repository.Models.CategoryRecipeJOIN", b =>
-                {
-                    b.HasOne("ICE_Repository.Models.Category", "category")
-                        .WithMany("CategoryRecipeJOINs")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ICE_Repository.Models.Recipe", "Recipe")
-                        .WithMany("CategoryRecipeJOINs")
-                        .HasForeignKey("RecipeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Recipe");
-
-                    b.Navigation("category");
-                });
-
             modelBuilder.Entity("ICE_Repository.Models.Comments", b =>
                 {
                     b.HasOne("ICE_Repository.Models.Recipe", "Recipe")
@@ -487,7 +445,7 @@ namespace ICE_Repository.Migrations
             modelBuilder.Entity("ICE_Repository.Models.Ingredient", b =>
                 {
                     b.HasOne("ICE_Repository.Models.Category", "category")
-                        .WithMany()
+                        .WithMany("ingredients")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -644,7 +602,7 @@ namespace ICE_Repository.Migrations
 
             modelBuilder.Entity("ICE_Repository.Models.Category", b =>
                 {
-                    b.Navigation("CategoryRecipeJOINs");
+                    b.Navigation("ingredients");
                 });
 
             modelBuilder.Entity("ICE_Repository.Models.Country", b =>
@@ -663,8 +621,6 @@ namespace ICE_Repository.Migrations
 
             modelBuilder.Entity("ICE_Repository.Models.Recipe", b =>
                 {
-                    b.Navigation("CategoryRecipeJOINs");
-
                     b.Navigation("CommentId");
 
                     b.Navigation("RecipeTag");
