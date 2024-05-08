@@ -28,10 +28,27 @@ namespace International_Cuisine_Exploration_API.Controllers
             return repo.GetAll();
         }
 
-        [HttpGet]
-        List<Ingredient> GetIngredientsForRecipe(int recipeId)
+        //public class RecipeWithIngredients
+        //{
+        //    public Recipe _recipe { get; set; }
+        //    public List<Ingredient> _ingredients { get; set; }
+        //}
+
+        [HttpGet("GetIngredientsForRecipe/{recipeId}")]
+        [ProducesResponseType(typeof(List<Ingredient>), 200)]
+        public IActionResult GetIngredientsForRecipe(int recipeId)
         {
-            return repo.GetIngredientsForRecipe(recipeId);
+            var ingredients = repo.GetIngredientsForRecipe(recipeId);
+            var recipe = repo.GetRecipeById(recipeId);
+
+            if (ingredients == null)
+            {
+                return NotFound();
+            }
+
+            var recipeWithIngredients = new { Recipe = recipe, Ingredients = ingredients };
+
+            return Ok(recipeWithIngredients);
         }
 
         // Create: api/<SamuraiController>

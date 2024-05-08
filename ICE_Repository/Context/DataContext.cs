@@ -60,14 +60,16 @@ namespace ICE_Repository.Context
         //    // Seed DietaryPreferences entities
         //    DietaryPreference dietaryPreference1 = new DietaryPreference() { DietaryPreferenceId = 1, PreferenceId = 1 };
         //    DietaryPreference dietaryPreference2 = new DietaryPreference() { DietaryPreferenceId = 2, PreferenceId = 2 };
-        //    modelBuilder.Entity<DietaryPreference>().HasData(dietaryPreference1);
-        //    modelBuilder.Entity<DietaryPreference>().HasData(dietaryPreference2);
+        //    modelBuilder.Entity<DietaryPreference>()
+        //        .Ignore(d => d.Preference) // Ignore the navigation property
+        //        .HasData(dietaryPreference1, dietaryPreference2);
 
         //    // Seed Ingredients entities
-        //    Ingredient ingredient1 = new Ingredient() { IngredientsId = 1, Name = "Banan", CategoryId = 1, RecipeId = 1 };
-        //    Ingredient ingredient2 = new Ingredient() { IngredientsId = 2, Name = "Banan", CategoryId = 2, RecipeId = 2 };
-        //    modelBuilder.Entity<Ingredient>().HasData(ingredient1);
-        //    modelBuilder.Entity<Ingredient>().HasData(ingredient2);
+        //    Ingredient ingredient1 = new Ingredient() { IngredientsId = 1, Name = "Banan", RecipeId = 1 };
+        //    Ingredient ingredient2 = new Ingredient() { IngredientsId = 2, Name = "Banan", RecipeId = 2 };
+        //    modelBuilder.Entity<Ingredient>()
+        //        .Ignore(i => i.category) // Ignore the navigation property
+        //        .HasData(ingredient1, ingredient2);
 
         //    // Seed Kitchens entities
         //    Kitchen kitchen1 = new Kitchen() { KitchenId = 1, Name = "Yoyo", Continent = "North America", Region = "West", CountryId = 1, RecipeId = 1 };
@@ -104,22 +106,6 @@ namespace ICE_Repository.Context
         //    };
         //    modelBuilder.Entity<Recipe>().HasData(recipe1);
         //    modelBuilder.Entity<Recipe>().HasData(recipe2);
-
-        //    // Seed RecipeIngredientJOIN entities
-        //    RecipeIngredientJOIN recipeIngredientJOIN1 = new RecipeIngredientJOIN()
-        //    {
-        //        RecipeIngredientJOINId = 1,
-        //        RecipeId = 1,
-        //        IngredientsId = 1
-        //    };
-        //    RecipeIngredientJOIN recipeIngredientJOIN2 = new RecipeIngredientJOIN()
-        //    {
-        //        RecipeIngredientJOINId = 2,
-        //        RecipeId = 2,
-        //        IngredientsId = 2
-        //    };
-        //    modelBuilder.Entity<RecipeIngredientJOIN>().HasData(recipeIngredientJOIN1);
-        //    modelBuilder.Entity<RecipeIngredientJOIN>().HasData(recipeIngredientJOIN2);
 
         //    // Seed RecipeTag entities
         //    RecipeTag recipeTag1 = new RecipeTag()
@@ -229,20 +215,6 @@ namespace ICE_Repository.Context
         //    modelBuilder.Entity<UserDietaryPreferenceJOIN>().HasData(userDietaryPreferenceJOIN1);
         //    modelBuilder.Entity<UserDietaryPreferenceJOIN>().HasData(userDietaryPreferenceJOIN2);
 
-        //    // Configure many-to-many relationship between Category and Recipe using CategoryRecipeJOIN
-        //    modelBuilder.Entity<CategoryRecipeJOIN>()
-        //        .HasKey(pc => new { pc.CategoryId, pc.RecipeId });
-
-        //    modelBuilder.Entity<CategoryRecipeJOIN>()
-        //        .HasOne(pc => pc.category)
-        //        .WithMany(c => c.CategoryRecipeJOINs)
-        //        .HasForeignKey(pc => pc.CategoryId);
-
-        //    modelBuilder.Entity<CategoryRecipeJOIN>()
-        //        .HasOne(pc => pc.Recipe)
-        //        .WithMany(r => r.CategoryRecipeJOINs)
-        //        .HasForeignKey(pc => pc.RecipeId);
-
         //    // Configure many-to-many relationship between User and DietaryPreference using UserDietaryPreferenceJOIN
         //    modelBuilder.Entity<UserDietaryPreferenceJOIN>()
         //        .HasKey(pc => new { pc.UserId, pc.DietaryPreferenceId });
@@ -270,20 +242,6 @@ namespace ICE_Repository.Context
         //        .HasOne(pc => pc.Recipe)
         //        .WithMany(u => u.UserFavoriteRecipeJOINs)
         //        .HasForeignKey(pc => pc.RecipeId);
-
-        //    // Configure many-to-many relationship between Recipe and Ingredient using RecipeIngredientJOIN
-        //    modelBuilder.Entity<RecipeIngredientJOIN>()
-        //        .HasKey(pc => new { pc.RecipeId, pc.IngredientsId });
-
-        //    modelBuilder.Entity<RecipeIngredientJOIN>()
-        //        .HasOne(pc => pc.recipes)
-        //        .WithMany(u => u.RecipeIngredientJOINs)
-        //        .HasForeignKey(pc => pc.RecipeId);
-
-        //    modelBuilder.Entity<RecipeIngredientJOIN>()
-        //        .HasOne(pc => pc.Ingredients)
-        //        .WithMany(u => u.RecipeIngredientJOINs)
-        //        .HasForeignKey(pc => pc.IngredientsId);
 
         //    base.OnModelCreating(modelBuilder);
         //}

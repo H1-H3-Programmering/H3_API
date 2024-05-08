@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ICE_Repository.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240507083044_NewMigration1")]
-    partial class NewMigration1
+    [Migration("20240508081135_newmigration")]
+    partial class newmigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
