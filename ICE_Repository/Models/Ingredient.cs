@@ -22,12 +22,12 @@ namespace ICE_Repository.Models
 
     public class IngredientCategoryJOIN
     {
-        [Key] public int UserFavoriteRecipeJOINId { get; set; }
+        [Key] public int IngredientCategoryJOINId { get; set; }
 
-        public int UserFavoriteId { get; set; }
-        [JsonIgnore] public UserFavorite UserFavorite { get; set; } = new UserFavorite();
+        public int IngredientId { get; set; }
+        [JsonIgnore] public Ingredient ingredient { get; set; } = new Ingredient();
 
-        public int RecipeId { get; set; }
-        [JsonIgnore] public Recipe Recipe { get; set; } = new Recipe();
+        public int CategoryId { get; set; }
+        [JsonIgnore] public Category category { get; set; } = new Category();
     }
 }

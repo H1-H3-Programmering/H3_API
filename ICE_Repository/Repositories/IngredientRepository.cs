@@ -32,18 +32,19 @@ namespace ICE_Repository.Repositories
 
         public Ingredient UpdateById(int id, Ingredient updatedIngredient)
         {
-            var ingredient = context.Ingredients.FirstOrDefault(i => i.IngredientsId == id);
+            var column = context.Ingredients.FirstOrDefault(c => c.IngredientsId == id);
+            //var column = context.Categories.FirstOrDefault(c => c.CategoryId == id);
 
-            if (ingredient != null)
+            if (column != null)
             {
-                ingredient.Name = updatedIngredient.Name;
-                ingredient.CategoryId = updatedIngredient.CategoryId;
-                ingredient.RecipeId = updatedIngredient.RecipeId;
+                column.Name = updatedIngredient.Name;
+                column.CategoryId = updatedIngredient.CategoryId;
+                column.RecipeId = updatedIngredient.RecipeId;
 
                 context.SaveChanges();
             }
 
-            return ingredient;
+            return column;
         }
 
         public Ingredient DeleteById(int id)

@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ICE_Repository.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240508081135_newmigration")]
+    [Migration("20240521165228_newmigration")]
     partial class newmigration
     {
         /// <inheritdoc />
