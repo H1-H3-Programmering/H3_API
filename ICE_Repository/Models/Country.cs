@@ -20,10 +20,10 @@ namespace ICE_Repository.Models
         public string? Continent { get; set; }
 
         //Navigation Property
-        [JsonIgnore] public List<Regions>? Region { get; set; }
+        public List<Regions> Region { get; set; } = new List<Regions>();
         //Navigation Property
-        [JsonIgnore] public List<Language>? Language { get; set; }
+        public List<Language> Language { get; set; } = new List<Language>();
         //Navigation Property
-        [JsonIgnore] public List<Kitchen>? Kitchen { get; set;}
+        [JsonIgnore] public List<Kitchen> Kitchen { get; set; } = new List<Kitchen>();
     }
 }

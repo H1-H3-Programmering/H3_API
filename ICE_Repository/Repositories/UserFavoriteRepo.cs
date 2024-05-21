@@ -36,7 +36,7 @@ namespace ICE_Repository.Repositories
 
             if (column != null)
             {
-                column.RecipeId = updatedColumn.RecipeId;
+                column.UserFavoriteRecipeJOINs = updatedColumn.UserFavoriteRecipeJOINs;
                 column.UserId = updatedColumn.UserId;
 
                 context.SaveChanges();

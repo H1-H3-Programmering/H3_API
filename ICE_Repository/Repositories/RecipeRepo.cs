@@ -62,5 +62,25 @@ namespace ICE_Repository.Repositories
             }
             return recipe;
         }
+
+        public Recipe GetRecipeById(int id)
+        {
+            var recipe = context.Recipes.FirstOrDefault(r => r.RecipeId == id);
+            return recipe;
+        }
+
+        public List<Ingredient> GetIngredientsForRecipe(int recipeId)
+        {
+            var recipeWithIngredients = context.Recipes
+                .Where(r => r.RecipeId == recipeId)
+                .Select(r => new
+                {
+                    Recipe = r,
+                    Ingredient = r.ingredients
+                })
+                .FirstOrDefault();
+
+            return recipeWithIngredients?.Ingredient.ToList();
+        }
     }
 }

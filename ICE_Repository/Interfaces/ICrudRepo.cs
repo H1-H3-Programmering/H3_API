@@ -19,7 +19,7 @@ namespace ICE_Repository.Interfaces
         Crud DeleteById(int id);
     }
     public interface IUserRepository : ICrudRepo<Users>{ }
-    public interface IRecipeRepo : ICrudRepo<Recipe>{ }
+    public interface IRecipeRepo : ICrudRepo<Recipe>{ List<Ingredient> GetIngredientsForRecipe(int recipeId); Recipe GetRecipeById(int recipeid); }
     public interface IIngredientRepo : ICrudRepo<Ingredient> { }
     public interface IKitchenRepo : ICrudRepo<Kitchen> { }
     public interface ICategoryRepo: ICrudRepo<Category> { }

@@ -40,7 +40,7 @@ namespace ICE_Repository.Repositories
                 column.Email = updatedColumn.Email;
                 column.Password = updatedColumn.Password;
                 column.CommentId = updatedColumn.CommentId;
-                column.DietaryPreference = updatedColumn.DietaryPreference;
+                column.UserDietaryPreferenceJOINs = updatedColumn.UserDietaryPreferenceJOINs;
                 column.ReviewId = updatedColumn.ReviewId;
 
                 context.SaveChanges();

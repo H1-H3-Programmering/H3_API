@@ -16,6 +16,8 @@ namespace ICE_Repository.Models
         public string? Continent { get; set; }
         public string? Region { get; set; }
         public int CountryId { get; set; }
-        [JsonIgnore] public Country? Country { get; set; }
+        [JsonIgnore] public Country Country { get; set; } = new Country();
+        public int RecipeId { get; set; }
+        [JsonIgnore] public Recipe recipe { get; set; } = new Recipe();
     }
 }
